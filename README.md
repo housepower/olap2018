@@ -18,7 +18,7 @@ ClickHouse 设计 xFunnel 函数实现[复杂漏斗分析](http://ds.analysys.cn
 
 - 获取ClickHouse源码，修改代码后，
 ```
-    ## 注意：此 patch 是从 b8543bcd4d0e9984405c75dbf00b23a6be727bc6 commit中切的分支修改
+    ## patch 是从 b8543bcd4d0e9984405c75dbf00b23a6be727bc6 commit中切的分支修改
     git apply funnel.patch  
 
     ## 编译ck

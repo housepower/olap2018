@@ -36,7 +36,7 @@ ClickHouse 设计 xFunnel 函数实现[复杂漏斗分析](http://ds.analysys.cn
 - 配置ClickHouse集群，见ClickHouse官方文档
 
 
-### 以下 workflow 操作详细参见 `tools/workflow_batch.sh`
+### 以下操作详细参见[workflow脚本](tools/workflow_batch.sh)
 
 ### 建单表
 ```
@@ -70,7 +70,7 @@ CREATE TABLE dis_event on cluster logs as t_event  ENGINE = Distributed(logs, de
 
 ### 查询
 
-* 正式比赛六题，详见 prod 目录
+* 正式比赛六题，详见[prod](prod) 目录
 * 示例查询
 1、计算出20180601-20180610范围内，依次有序触发“addCart-加入购物车”、“order-生成订单”、“orderPayment-订单付款”、“evaluationGoods-评价商品”的用户转换情况以及各步骤转换时间中位数，且满足时间窗口为1天，且要求“order-生成订单”与“evaluationGoods-评价商品”对应的“brand-商品品牌”属性相同。
 

@@ -18,7 +18,7 @@ ClickHouse 设计 xFunnel 函数实现[复杂漏斗分析](http://ds.analysys.cn
 
 - 获取ClickHouse源码，修改代码后，
 ```
-    ## 注意：此 patch 是从b8543bcd4d0e9984405c75dbf00b23a6be727bc6 commit中切的分支修改
+    ## 注意：此 patch 是从 b8543bcd4d0e9984405c75dbf00b23a6be727bc6 commit中切的分支修改
     git apply funnel.patch  
 
     ## 编译ck
@@ -38,9 +38,7 @@ ClickHouse 设计 xFunnel 函数实现[复杂漏斗分析](http://ds.analysys.cn
 
 ### 以下 workflow 操作详细参见 `tools/workflow_batch.sh`
 
-- 建表
-
-    * 单表
+### 建单表
 ```
 CREATE TABLE t_event on cluster logs 
         (
@@ -59,18 +57,18 @@ CREATE TABLE t_event on cluster logs
         ENGINE = MergeTree PARTITION BY toYYYYMMDD(day) ORDER BY (uid,its,action_code) SETTINGS index_granularity = 8192"
 ```
 
-    * 分布式表
+### 建分布式表
 ```
 CREATE TABLE dis_event on cluster logs as t_event  ENGINE = Distributed(logs, default, t_event, metroHash64( toString(uid)) );
 ```
 
 
-- 导入数据
+### 导入数据
 ```
 ./importer -dsn=tcp://localhost:9000  -file=/data/file.log -logAll=false -table=dis_event  -pktype=String
 ```
 
-- 查询
+### 查询
 
 * 正式比赛六题，详见 prod 目录
 * 示例查询
